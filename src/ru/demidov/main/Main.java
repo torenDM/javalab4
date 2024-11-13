@@ -20,14 +20,15 @@ import static ru.demidov.task2.PointBox.addPointToBox;
 public class Main {
     public static void main(String[] args) {
         // Задача 1.1: Обобщенная коробка
-        System.out.println("\nЗадача 1.1: Обобщенная коробка");
-        Box<Integer> integerBox = new Box<>();         // Создаем коробку, которая может хранить целочисленные значения
-        integerBox.put(3);         // Размещаем число 3 в коробке
-        Integer value = integerBox.get();         // Извлекаем значение из коробки
-        System.out.println("Извлеченное значение: " + value);         // Выводим значение на экран
-        System.out.println("Коробка пустая? " + integerBox.isEmpty());         // Проверяем, пустая ли коробка
+        try {
+            System.out.println("\nЗадача 1.1: Обобщенная коробка");
+            Box<Integer> integerBox = new Box<>();         // Создаем коробку, которая может хранить целочисленные значения
+            integerBox.put(3);         // Размещаем число 3 в коробке
+            Integer value = integerBox.get();         // Извлекаем значение из коробки
+            System.out.println("Извлеченное значение: " + value);         // Выводим значение на экран
+            System.out.println("Коробка пустая? " + integerBox.isEmpty());         // Проверяем, пустая ли коробка
 
-        try {         // Пробуем положить сразу два значения
+            // Пробуем положить сразу два значения
             integerBox.put(3);
             integerBox.put(5); // Это должно вызвать исключение
         } catch (IllegalStateException e) {
@@ -53,16 +54,16 @@ public class Main {
         System.out.println(getValueFromStorage(stringStorageHello, "hello world")); // Ожидается "hello"
 
         // Задача 2.3: Начало отсчета
-        System.out.println("\nЗадача 2.3: Начало отсчета");
-        Box<Point3D> pointBox = new Box<>();         // Создаем коробку для трехмерных точек
-        Point3D point = new Point3D(1.0, 2.0, 3.0);         // Создаем трехмерную точку
-        addPointToBox(pointBox, point);         // Добавляем точку в коробку
-        System.out.println("Коробка: " + pointBox); // Проверяем содержимое коробки
-        Point3D retrievedPoint = pointBox.get();         // Получаем точку из коробки и выводим ее
-        System.out.print("Извлеченная точка: ");
-        System.out.println(retrievedPoint); // Ожидается вывод: {1.0;2.0;3.0}
+        try {
+            System.out.println("\nЗадача 2.3: Начало отсчета");
+            Box<Point3D> pointBox = new Box<>();         // Создаем коробку для трехмерных точек
+            Point3D point = new Point3D(1.0, 2.0, 3.0);         // Создаем трехмерную точку
+            addPointToBox(pointBox, point);         // Добавляем точку в коробку
+            System.out.println("Коробка: " + pointBox); // Проверяем содержимое коробки
+            Point3D retrievedPoint = pointBox.get();         // Получаем точку из коробки и выводим ее
+            System.out.print("Извлеченная точка: ");
+            System.out.println(retrievedPoint); // Ожидается вывод: {1.0;2.0;3.0}
 
-        try {         // Пробуем положить сразу два значения
             Point3D point1 = new Point3D(1.0, 2.0, 3.0);
             addPointToBox(pointBox, point1);
             Point3D point2 = new Point3D(1.0, 2.0, 3.0);
@@ -74,16 +75,16 @@ public class Main {
         // Задача 3.1: Функция
         System.out.println("\nЗадача 3.1: Функция");
 
-            // ч.1
+        // ч.1
         List<String> strings = Arrays.asList("qwerty", "asdfg", "zx");
         List<Integer> lengths = GenericMethods.map(strings, String::length);
 
-            // ч.2
+        // ч.2
         System.out.println("1. Длина каждой строки: " + lengths);
         List<Integer> numbers = Arrays.asList(1, -3, 7);
         List<Integer> positiveNumbers = GenericMethods.map(numbers, Math::abs);
 
-            // ч.3
+        // ч.3
         System.out.println("2. Положительные числа: " + positiveNumbers);
         List<int[]> arrays = Arrays.asList(new int[]{1, 2, 3}, new int[]{4, 5}, new int[]{-1, -2});
         List<Integer> maxValues = GenericMethods.map(arrays, arr -> Arrays.stream(arr).max().orElse(Integer.MIN_VALUE));
@@ -92,15 +93,15 @@ public class Main {
         // Задача 3.2: Фильтр
         System.out.println("\nЗадача 3.2: Фильтр");
 
-            // ч.1
+        // ч.1
         List<String> filteredStrings = FilterMethods.filter(strings, s -> s.length() >= 3);
         System.out.println("1. Фильтр - строки не менее 3 символов: " + filteredStrings);
 
-            // ч.2
+        // ч.2
         List<Integer> filteredNumbers = FilterMethods.filter(numbers, n -> n < 0);
         System.out.println("2. Фильтр - только отрицательные значения: " + filteredNumbers);
 
-            // ч.3
+        // ч.3
         List<int[]> filteredArrays = FilterMethods.filter(arrays, arr -> Arrays.stream(arr).noneMatch(n -> n > 0));
         System.out.print("3. Фильтр - только массивы исключительно с отрицательными числами: ");
         for (int[] array : filteredArrays) {
@@ -110,17 +111,17 @@ public class Main {
         // Задача 3.3: Сокращение
         System.out.println("\nЗадача 3.3: Сокращение");
 
-            // ч.1
+        // ч.1
         List<String> stringList = Arrays.asList("qwerty", "asdfg", "zx");
         String concatenatedString = ReductionMethods.reduce(stringList, String::concat);
         System.out.println("1. Сформированная строка: " + concatenatedString);
 
-            // ч.2
+        // ч.2
         List<Integer> integerList = Arrays.asList(1, -3, 7);
         Integer sum = ReductionMethods.reduce(integerList, Integer::sum);
         System.out.println("2. Сумма значений: " + sum);
 
-            // ч.3
+        // ч.3
         List<List<Integer>> listOfIntegerLists = Arrays.asList(
                 Arrays.asList(1, 2, 3),
                 Arrays.asList(4, 5),
@@ -138,7 +139,7 @@ public class Main {
         // Задача 3.4: Коллекционирование
         System.out.println("\nЗадача 3.4: Коллекционирование");
 
-            // ч.1
+        // ч.1
         var partitionedNumbers = CollectionMethods.partitionCollection(
                 numbers,
                 ArrayList::new,
@@ -147,7 +148,7 @@ public class Main {
         System.out.println("1. Положительные числа: " + partitionedNumbers.get(true));
         System.out.println("1. Отрицательные числа: " + partitionedNumbers.get(false));
 
-            // ч.2
+        // ч.2
         List<String> stringsSort = List.of("qwerty", "asdfg", "zx", "qw");
         Map<Integer, List<String>> groupedStrings = CollectionMethods.groupByLength(
                 stringsSort,
@@ -157,7 +158,7 @@ public class Main {
                 System.out.println("2. Строки длиной " + length + ": " + group)
         );
 
-            // ч.3
+        // ч.3
         List<String> uniqueStrings = List.of("qwerty", "asdfg", "qwerty", "qw");
         Set<String> uniqueSet = new HashSet<>(uniqueStrings);
         System.out.println("3. Уникальные строки: " + uniqueSet);
