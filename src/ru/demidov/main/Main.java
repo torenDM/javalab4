@@ -131,7 +131,7 @@ public class Main {
             newList.addAll(list2);
             return newList;
         }));
-        Integer totalCount = totalList.size();
+        int totalCount = totalList.size();
         System.out.println("3. Общее количество элементов во всех списках: " + totalCount);
 
 
