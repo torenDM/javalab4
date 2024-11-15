@@ -30,16 +30,14 @@ public class CollectionMethods {
         return Map.of(true, positiveCollection, false, negativeCollection);
     }
 
-
-
     public static <T, P extends Collection<T>> Map<Integer, P> groupByLength(
             List<T> sourceList,
             Function<List<T>, P> collectionFactory) {
 
-        // Группируем строки по их длине
+        // Группируем элементы по их длине
         return sourceList.stream()
                 .collect(Collectors.groupingBy(
-                        item -> item.toString().length(), // Получаем длину строки
+                        item -> item.toString().length(),
                         Collectors.mapping(Function.identity(), Collectors.toList())
                 ))
                 .entrySet().stream()

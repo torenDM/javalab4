@@ -2,13 +2,12 @@ package ru.demidov.task3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class GenericMethods {
-    public static <T, P> List<P> map(List<T> list, Function<T, P> mapper) {
+    public static <T, P> List<P> map(List<T> list, Mapper1<T, P> mapper) {
         List<P> result = new ArrayList<>();
         for (T item : list) {
-            result.add(mapper.apply(item));
+            result.add(mapper.map(item));
         }
         return result;
     }
